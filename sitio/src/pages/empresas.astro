@@ -1,0 +1,259 @@
+---
+import Base from "../layouts/Base.astro";
+import Pendiente from "../components/Pendiente.astro";
+import { ARGUMENTOS, NEGOCIO, TOTAL_ENTREGADOS, COBERTURA } from "../datos";
+
+// Categorías de la sección 4 de docs/INVESTIGACION-MERCADO.md
+const sectores = [
+  { t: "Torres residenciales", d: "Lobbies y áreas comunes. Bosques de las Lomas, Santa Fe, Polanco, Interlomas, Huixquilucan." },
+  { t: "Agencias automotrices", d: "Showrooms. El año pasado surtimos 7 agencias." },
+  { t: "Hoteles y restaurantes", d: "Recepciones, terrazas y comedores." },
+  { t: "Corporativos y oficinas", d: "Recepción, pisos ejecutivos y áreas de colaboradores." },
+  { t: "Clubes y gimnasios", d: "Accesos y áreas sociales." },
+  { t: "Salones y venues de eventos", d: "Montajes de temporada." },
+];
+
+const servicio = [
+  { t: "Entrega", d: "En la fecha que ustedes fijen, dentro de CDMX y Edomex." },
+  { t: "Instalación", d: "Lo dejamos parado, montado en su base y sin embalaje." },
+  { t: "Retiro", d: "Pasamos por él al terminar la temporada." },
+  { t: "Un solo contacto", d: "Tratan directo con los dueños, no con un call center." },
+];
+---
+
+<Base
+  titulo="Árboles de Navidad naturales para empresas | Lobbies y showrooms CDMX"
+  descripcion="Árboles de Navidad naturales de hasta 6 metros para lobbies, showrooms, hoteles, corporativos y torres residenciales en CDMX y Edomex. Con entrega, instalación, retiro y documentación de importación."
+  ruta="/empresas"
+>
+  <section class="bg-verde text-salvia">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:py-24">
+      <p class="text-xs font-bold tracking-[0.3em] text-dorado">PARA EMPRESAS</p>
+      <h1 class="titulo mt-4 max-w-3xl text-4xl font-bold text-crema sm:text-5xl">
+        Árboles de hasta 6 metros para su lobby, showroom u oficina
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg">
+        Importamos directo del productor en Oregon, así que controlamos la
+        calidad de cada árbol y respondemos por él toda la temporada. Cuarta
+        temporada operando, <span class="cifra">{TOTAL_ENTREGADOS}</span> árboles
+        entregados.
+      </p>
+      <a
+        href="#cotizar"
+        class="mt-8 inline-block rounded-md bg-dorado px-7 py-3.5 font-bold text-verde transition-transform hover:scale-[1.03]"
+      >
+        Pedir cotización por volumen
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Sectores ─────────────────────────────────────────────────── -->
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:py-20">
+    <h2 class="titulo text-3xl font-bold sm:text-4xl">A quién le surtimos</h2>
+    <div class="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        sectores.map((s) => (
+          <article class="rounded-lg border border-salvia bg-white p-6">
+            <h3 class="titulo text-xl font-bold">{s.t}</h3>
+            <p class="mt-2 text-sm text-tinta-suave">{s.d}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ── Servicio ─────────────────────────────────────────────────── -->
+  <section class="border-y border-salvia/60 bg-white">
+    <div class="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:py-20 md:grid-cols-2">
+      <div>
+        <h2 class="titulo text-3xl font-bold sm:text-4xl">El servicio incluye</h2>
+        <dl class="mt-8 space-y-6">
+          {
+            servicio.map((s) => (
+              <div class="flex gap-4">
+                <span class="mt-2 h-2.5 w-2.5 shrink-0 rotate-45 bg-dorado" aria-hidden="true" />
+                <div>
+                  <dt class="font-bold">{s.t}</dt>
+                  <dd class="mt-1 text-sm text-tinta-suave">{s.d}</dd>
+                </div>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+      <div>
+        <h2 class="titulo text-3xl font-bold sm:text-4xl">Por qué abeto noble</h2>
+        <dl class="mt-8 space-y-6">
+          {
+            ARGUMENTOS.slice(0, 4).map((a) => (
+              <div class="flex gap-4">
+                <span class="mt-2 h-2.5 w-2.5 shrink-0 rotate-45 bg-dorado" aria-hidden="true" />
+                <div>
+                  <dt class="font-bold">{a.texto}</dt>
+                  <dd class="mt-1 text-xs text-tinta-suave">{a.fuente}</dd>
+                </div>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Trazabilidad: el argumento de cumplimiento ───────────────── -->
+  <section class="bg-verde text-salvia">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:py-20">
+      <h2 class="titulo text-3xl font-bold text-crema sm:text-4xl">
+        Trazabilidad de importación
+      </h2>
+      <p class="mt-4 max-w-3xl">
+        Cada embarque entra al país al amparo de la
+        <strong class="text-crema">NOM-013-SEMARNAT-2020</strong> y es verificado
+        por <strong class="text-crema">PROFEPA</strong> en la aduana. Entregamos
+        a su área de compras la documentación completa:
+      </p>
+      <ul class="mt-7 grid gap-4 sm:grid-cols-2">
+        <li class="flex gap-3 rounded-lg border border-verde-medio bg-verde-medio/40 p-5">
+          <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rotate-45 bg-dorado" aria-hidden="true"></span>
+          <span>
+            <strong class="text-crema">Certificado fitosanitario internacional (NIMF-12)</strong>
+            del estado de origen, con declaración de inspección, tratamiento y
+            agitación mecánica.
+          </span>
+        </li>
+        <li class="flex gap-3 rounded-lg border border-verde-medio bg-verde-medio/40 p-5">
+          <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rotate-45 bg-dorado" aria-hidden="true"></span>
+          <span>
+            <strong class="text-crema">Registro de Verificación (RV) de PROFEPA</strong>,
+            el documento que habilita la importación.
+          </span>
+        </li>
+      </ul>
+      <p class="mt-6 text-sm text-salvia/80">
+        Es la diferencia entre un proveedor formal y un vendedor de temporada.
+        Si su área de compras pide expediente, lo tenemos.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Cotización ───────────────────────────────────────────────── -->
+  <section id="cotizar" class="mx-auto max-w-3xl px-4 py-16 sm:py-20">
+    <h2 class="titulo text-3xl font-bold sm:text-4xl">Pedir cotización</h2>
+    <p class="mt-3 text-tinta-suave">
+      Dinos cuántos árboles, de qué altura y para qué fecha los necesitan, y les
+      mandamos la cotización.
+    </p>
+
+    <form id="forma-b2b" class="mt-8 grid gap-5 rounded-xl border border-salvia bg-white p-6 sm:p-8">
+      <div class="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label for="empresa" class="block text-sm font-bold">Empresa</label>
+          <input id="empresa" name="empresa" type="text" required autocomplete="organization"
+            class="mt-1.5 w-full rounded-md border border-salvia px-4 py-3 focus:border-dorado focus:outline-none focus:ring-2 focus:ring-dorado/40" />
+        </div>
+        <div>
+          <label for="contacto" class="block text-sm font-bold">Nombre y puesto</label>
+          <input id="contacto" name="contacto" type="text" required autocomplete="name"
+            class="mt-1.5 w-full rounded-md border border-salvia px-4 py-3 focus:border-dorado focus:outline-none focus:ring-2 focus:ring-dorado/40" />
+        </div>
+        <div>
+          <label for="tel" class="block text-sm font-bold">WhatsApp o teléfono</label>
+          <input id="tel" name="tel" type="tel" required inputmode="tel" autocomplete="tel"
+            class="mt-1.5 w-full rounded-md border border-salvia px-4 py-3 focus:border-dorado focus:outline-none focus:ring-2 focus:ring-dorado/40" />
+        </div>
+        <div>
+          <label for="correo" class="block text-sm font-bold">Correo</label>
+          <input id="correo" name="correo" type="email" required autocomplete="email"
+            class="mt-1.5 w-full rounded-md border border-salvia px-4 py-3 focus:border-dorado focus:outline-none focus:ring-2 focus:ring-dorado/40" />
+        </div>
+        <div>
+          <label for="cantidad" class="block text-sm font-bold">Cuántos árboles</label>
+          <input id="cantidad" name="cantidad" type="number" min="1" required inputmode="numeric"
+            class="mt-1.5 w-full rounded-md border border-salvia px-4 py-3 focus:border-dorado focus:outline-none focus:ring-2 focus:ring-dorado/40" />
+        </div>
+        <div>
+          <label for="alturaB2B" class="block text-sm font-bold">Altura aproximada</label>
+          <select id="alturaB2B" name="altura" required
+            class="mt-1.5 w-full rounded-md border border-salvia bg-white px-4 py-3 focus:border-dorado focus:outline-none focus:ring-2 focus:ring-dorado/40">
+            <option value="">Elige…</option>
+            <option>1 a 1.5 m</option>
+            <option>1.8 a 2.2 m</option>
+            <option>2.5 a 3 m</option>
+            <option>4 a 6 m</option>
+            <option>Varias alturas</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label for="sede" class="block text-sm font-bold">Dónde se instalarían</label>
+        <input id="sede" name="sede" type="text" required
+          placeholder="Colonia y alcaldía o municipio"
+          class="mt-1.5 w-full rounded-md border border-salvia px-4 py-3 focus:border-dorado focus:outline-none focus:ring-2 focus:ring-dorado/40" />
+        <p class="mt-1.5 text-xs text-tinta-suave">Solo entregamos en {COBERTURA}.</p>
+      </div>
+
+      <div>
+        <label for="detalle" class="block text-sm font-bold">
+          Detalles <span class="font-normal text-tinta-suave">(opcional)</span>
+        </label>
+        <textarea id="detalle" name="detalle" rows="3"
+          placeholder="Fecha de instalación, altura de plafón, si requieren factura, si compras pide expediente…"
+          class="mt-1.5 w-full rounded-md border border-salvia px-4 py-3 focus:border-dorado focus:outline-none focus:ring-2 focus:ring-dorado/40"></textarea>
+      </div>
+
+      <button type="submit"
+        class="mt-2 rounded-md bg-verde px-6 py-4 font-bold text-crema transition-transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={!NEGOCIO.whatsapp}>
+        Enviar solicitud
+      </button>
+      <p id="estado-b2b" class="text-sm" role="status" aria-live="polite"></p>
+      {!NEGOCIO.whatsapp && (
+        <p class="text-xs text-[#7A5400]">
+          Falta configurar el WhatsApp en <code>src/datos.ts</code> para habilitar el envío.
+        </p>
+      )}
+    </form>
+  </section>
+</Base>
+
+<script define:vars={{ WHATSAPP: NEGOCIO.whatsapp, ENDPOINT: NEGOCIO.endpointFormulario }}>
+  const forma = document.getElementById("forma-b2b");
+  const estado = document.getElementById("estado-b2b");
+
+  forma?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!WHATSAPP) return;
+    const d = Object.fromEntries(new FormData(forma));
+    const boton = forma.querySelector('button[type="submit"]');
+    boton.disabled = true;
+    estado.textContent = "Enviando…";
+    estado.className = "text-sm text-tinta-suave";
+
+    if (ENDPOINT) {
+      try {
+        await fetch(ENDPOINT, {
+          method: "POST", mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ ...d, origen: "sitio-b2b", fechaEnvio: new Date().toISOString() }),
+        });
+      } catch (err) { console.error("No se pudo guardar la solicitud:", err); }
+    }
+
+    const mensaje = [
+      "Hola, solicito cotización para empresa 🎄", "",
+      `Empresa: ${d.empresa}`,
+      `Contacto: ${d.contacto}`,
+      `Correo: ${d.correo}`,
+      `Cantidad: ${d.cantidad} árboles`,
+      `Altura: ${d.altura}`,
+      `Ubicación: ${d.sede}`,
+      d.detalle ? `Detalles: ${d.detalle}` : null,
+    ].filter(Boolean).join("\n");
+
+    estado.textContent = "Listo. Abriendo WhatsApp…";
+    estado.className = "text-sm font-bold text-verde";
+    window.location.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+    setTimeout(() => (boton.disabled = false), 2500);
+  });
+</script>

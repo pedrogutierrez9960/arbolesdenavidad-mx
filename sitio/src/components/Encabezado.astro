@@ -1,0 +1,63 @@
+---
+const enlaces = [
+  { href: "/arboles", texto: "Nuestros árboles" },
+  { href: "/empresas", texto: "Para empresas" },
+  { href: "/preguntas", texto: "Preguntas" },
+];
+const actual = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<header class="sticky top-0 z-40 border-b border-verde-medio/40 bg-verde/95 backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3" aria-label="Principal">
+    <a href="/" class="flex shrink-0 items-center gap-2.5" aria-label="Inicio">
+      <img src="/marca/isotipo-transparente.svg" alt="" width="34" height="34" class="h-8 w-8" />
+      <span class="titulo text-[15px] leading-tight font-bold text-crema sm:text-base">
+        Árboles de Navidad<span class="hidden sm:inline"> Naturales</span>
+      </span>
+    </a>
+
+    <ul class="ml-auto hidden items-center gap-6 text-sm md:flex">
+      {
+        enlaces.map((e) => (
+          <li>
+            <a
+              href={e.href}
+              aria-current={actual === e.href ? "page" : undefined}
+              class:list={[
+                "transition-colors hover:text-dorado",
+                actual === e.href ? "text-dorado" : "text-salvia",
+              ]}
+            >
+              {e.texto}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href="/apartar"
+      class="ml-auto shrink-0 rounded-md bg-dorado px-3.5 py-2 text-[13px] font-bold text-verde transition-transform hover:scale-[1.03] sm:px-5 sm:text-sm md:ml-0"
+    >
+      Apartar mi árbol
+    </a>
+  </nav>
+
+  <!-- Navegación en celular: barra secundaria, sin menú desplegable.
+       Un menú hamburguesa aquí costaría JavaScript y son solo 3 ligas. -->
+  <ul class="flex justify-center gap-5 border-t border-verde-medio/40 px-4 py-2 text-[13px] md:hidden">
+    {
+      enlaces.map((e) => (
+        <li>
+          <a
+            href={e.href}
+            aria-current={actual === e.href ? "page" : undefined}
+            class:list={[actual === e.href ? "text-dorado" : "text-salvia"]}
+          >
+            {e.texto}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</header>

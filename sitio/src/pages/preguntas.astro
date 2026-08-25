@@ -1,0 +1,151 @@
+---
+import Base from "../layouts/Base.astro";
+import Pendiente from "../components/Pendiente.astro";
+import { COBERTURA, NEGOCIO } from "../datos";
+
+/**
+ * Cada respuesta sale de docs/CONTEXTO-NEGOCIO.md o de la sección 7 de
+ * docs/INVESTIGACION-MERCADO.md. Nada de datos inventados: donde falta
+ * información se dice que se confirma por WhatsApp, no se estima.
+ */
+const grupos = [
+  {
+    titulo: "Cuidados y duración",
+    preguntas: [
+      {
+        p: "¿Cuánto dura un árbol natural?",
+        r: "El abeto noble retiene más del 90% de su aguja a los 28 días manteniéndolo hidratado, según pruebas del Christmas Tree Research Program de Oregon State University en condiciones de sala (~21 °C, 30-40% de humedad). Eso cubre la temporada completa si lo riegas.",
+      },
+      {
+        p: "¿Cada cuánto lo riego?",
+        r: "Revisa el agua de la base todos los días. Un árbol recién cortado bebe bastante los primeros días. La regla práctica es que la base del tronco nunca se quede seca: si se seca, sella y ya no vuelve a absorber bien.",
+      },
+      {
+        p: "¿Dónde lo pongo?",
+        r: "Lejos de calefacción, chimenea y de la luz directa del sol. El calor seco es lo que más acelera la caída de la aguja.",
+      },
+      {
+        p: "¿Aguanta esferas pesadas?",
+        r: "Sí. La rama del abeto noble es rígida y horizontal, y es justo la razón por la que se ve tan bien decorado: no se vence con adornos pesados.",
+      },
+    ],
+  },
+  {
+    titulo: "Entrega",
+    preguntas: [
+      {
+        p: "¿A dónde entregan?",
+        r: `Solo a ${COBERTURA}. No hacemos entregas fuera de esta zona.`,
+      },
+      {
+        p: "¿Qué incluye la entrega?",
+        r: "Te lo llevamos y lo dejamos parado en su lugar, montado y sin embalaje. No tienes que cargarlo ni lidiar con agujas en la cajuela.",
+      },
+      {
+        p: "¿Puedo escoger mi árbol en persona?",
+        r: "Sí. Puedes venir a verlos y escoger el tuyo, y nosotros lo transportamos.",
+      },
+      {
+        p: "¿Puedo elegir el día de entrega?",
+        r: "Sí, lo acordamos contigo al apartar. Entre más temprano apartes, más días tienes para escoger.",
+      },
+    ],
+  },
+  {
+    titulo: "Compra y precios",
+    preguntas: [
+      {
+        p: "¿Cuánto cuesta?",
+        r: "PRECIO_PENDIENTE",
+      },
+      {
+        p: "¿Por qué conviene apartar antes?",
+        r: "Importamos por pedido y cada año se acaban primero los tamaños grandes. El que aparta, escoge. Además la preventa tiene descuento sobre el precio de temporada.",
+      },
+      {
+        p: "¿Tengo que pagar al apartar?",
+        r: "En el formulario del sitio no se cobra nada. Apartas, te confirmamos disponibilidad y precio por WhatsApp, y de ahí acordamos.",
+      },
+      {
+        p: "¿Facturan?",
+        r: "Sí, para pedidos de empresa. Escríbenos con los datos fiscales y lo vemos al cotizar.",
+      },
+    ],
+  },
+  {
+    titulo: "Origen y fin de temporada",
+    preguntas: [
+      {
+        p: "¿De dónde vienen los árboles?",
+        r: "De Oregon, Estados Unidos, que es el estado que más árboles de Navidad produce del país. El abeto noble (Abies procera) es originario de Oregon y Washington. Los importamos nosotros, sin intermediarios.",
+      },
+      {
+        p: "¿Comprar un árbol natural deforesta?",
+        r: "No. Vienen de plantaciones comerciales sembradas específicamente para esto, no de bosque nativo. Cada árbol tarda de 8 a 10 años en llegar a su tamaño de cosecha.",
+      },
+      {
+        p: "¿La importación es legal?",
+        r: "Sí. Entran al amparo de la NOM-013-SEMARNAT-2020 y son verificados por PROFEPA en la aduana. Para pedidos de empresa entregamos el certificado fitosanitario internacional y el Registro de Verificación de PROFEPA.",
+      },
+      {
+        p: "¿Qué hago con el árbol en enero?",
+        r: "No lo tires a la basura. La Secretaría del Medio Ambiente de la Ciudad de México instala centros de acopio cada enero, donde los convierten en composta para áreas verdes. Llévalo limpio: sin luces, cables, clavos ni adornos.",
+      },
+    ],
+  },
+];
+---
+
+<Base
+  titulo="Preguntas frecuentes | Árboles de Navidad naturales CDMX"
+  descripcion="Cuidados, riego, duración, zonas de entrega y qué hacer con tu árbol natural al terminar la temporada. Todo sobre el abeto noble de Oregon en CDMX y Edomex."
+  ruta="/preguntas"
+>
+  <section class="mx-auto max-w-3xl px-4 py-14 sm:py-20">
+    <h1 class="titulo text-4xl font-bold sm:text-5xl">Preguntas frecuentes</h1>
+    <p class="mt-4 text-lg text-tinta-suave">
+      Si no encuentras lo que buscas, escríbenos por WhatsApp y te contestamos.
+    </p>
+
+    {
+      grupos.map((g) => (
+        <div class="mt-12">
+          <h2 class="titulo border-b border-salvia pb-2 text-2xl font-bold">{g.titulo}</h2>
+          <dl class="mt-5 divide-y divide-salvia/70">
+            {g.preguntas.map((q) => (
+              <div class="py-5">
+                <dt class="font-bold">{q.p}</dt>
+                <dd class="mt-2 text-tinta-suave">
+                  {q.r === "PRECIO_PENDIENTE" ? (
+                    <>
+                      El precio depende de la altura. Puedes ver el rango en{" "}
+                      <a href="/arboles" class="font-bold text-verde underline">
+                        nuestros árboles
+                      </a>
+                      . Precio de esta temporada: <Pendiente campo="PRECIO" />
+                    </>
+                  ) : (
+                    q.r
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))
+    }
+
+    <div class="mt-14 rounded-xl border-2 border-dorado bg-white p-8 text-center">
+      <h2 class="titulo text-2xl font-bold">¿Otra duda?</h2>
+      <p class="mt-2 text-tinta-suave">
+        Mándanos una foto de tu espacio y te decimos qué tamaño te queda.
+      </p>
+      <a
+        href="/apartar"
+        class="mt-6 inline-block rounded-md bg-dorado px-7 py-3.5 font-bold text-verde transition-transform hover:scale-[1.03]"
+      >
+        Escríbenos
+      </a>
+    </div>
+  </section>
+</Base>

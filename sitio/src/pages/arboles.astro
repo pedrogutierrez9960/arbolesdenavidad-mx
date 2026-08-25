@@ -1,0 +1,232 @@
+---
+import Base from "../layouts/Base.astro";
+import Pendiente from "../components/Pendiente.astro";
+import { ALTURAS, COBERTURA } from "../datos";
+
+const opciones = [1, 1.5, 2, 2.5, 3, 4, 5, 6];
+---
+
+<Base
+  titulo="Tamaños y precios de árboles de Navidad naturales | CDMX y Edomex"
+  descripcion="Árboles de Navidad naturales de 1 a 6 metros. Compara cada altura contra una persona de 1.70 m y descubre cuál te cabe. Entrega a domicilio en CDMX y Estado de México."
+  ruta="/arboles"
+>
+  <section class="mx-auto max-w-6xl px-4 py-14 sm:py-20">
+    <h1 class="titulo text-4xl font-bold sm:text-5xl">¿De qué tamaño me cabe?</h1>
+    <p class="mt-4 max-w-2xl text-lg text-tinta-suave">
+      Es la pregunta que más nos hacen. Mueve el tamaño y compáralo contra una
+      persona de <span class="cifra">1.70</span> m.
+    </p>
+
+    <!-- ── Selector visual ──────────────────────────────────────────── -->
+    <div class="mt-10 grid gap-8 rounded-xl border border-salvia bg-white p-5 sm:p-8 lg:grid-cols-[1fr_320px]">
+      <div>
+        <div class="flex flex-wrap gap-2" role="group" aria-label="Elegir altura del árbol">
+          {
+            opciones.map((m) => (
+              <button
+                type="button"
+                data-metros={m}
+                class="boton-altura cifra rounded-md border-2 border-salvia px-4 py-2 text-sm transition-colors hover:border-dorado"
+              >
+                {m} m
+              </button>
+            ))
+          }
+        </div>
+
+        <svg
+          id="comparativa"
+          viewBox="0 0 400 680"
+          class="mt-6 w-full"
+          style="max-height:min(56vh,480px)"
+          role="img"
+          aria-labelledby="titulo-comparativa"
+        >
+          <title id="titulo-comparativa">
+            Comparación de altura entre una persona de 1.70 metros y el árbol seleccionado
+          </title>
+          <!-- retícula por metro -->
+          <g id="reticula" stroke="#BACDB4" stroke-width="1" opacity="0.4"></g>
+          <line id="piso" x1="12" y1="630" x2="388" y2="630" stroke="#4A5B50" stroke-width="1.5" />
+          <!-- persona de referencia -->
+          <g id="persona" fill="#C9A227"></g>
+          <!-- árbol -->
+          <g id="arbol" fill="#1B4630"></g>
+          <text id="etiqueta-persona" x="0" y="652" font-size="15" fill="#4A5B50" text-anchor="middle">1.70 m</text>
+          <text id="etiqueta-arbol" x="0" y="652" font-size="17" font-weight="bold" fill="#0E2A1C" text-anchor="middle"></text>
+        </svg>
+      </div>
+
+      <aside class="flex flex-col justify-center rounded-lg bg-crema p-6">
+        <p class="text-xs font-bold tracking-[0.2em] text-dorado">ALTURA SELECCIONADA</p>
+        <p id="detalle-altura" class="cifra mt-2 text-4xl text-verde"></p>
+        <p id="detalle-uso" class="mt-3 text-tinta-suave"></p>
+        <hr class="my-5 border-salvia" />
+        <p class="text-xs font-bold tracking-[0.2em] text-dorado">PRECIO</p>
+        <p class="mt-2"><Pendiente campo="PRECIO" /></p>
+        <p class="mt-3 text-xs text-tinta-suave">
+          Deja mínimo <span class="cifra">30</span> cm entre la punta y el techo
+          para la estrella.
+        </p>
+        <a
+          href="/apartar"
+          class="mt-6 rounded-md bg-dorado px-5 py-3 text-center font-bold text-verde transition-transform hover:scale-[1.03]"
+        >
+          Apartar este tamaño
+        </a>
+      </aside>
+    </div>
+
+    <!-- ── Tabla ────────────────────────────────────────────────────── -->
+    <h2 class="titulo mt-16 text-3xl font-bold">Alturas y precios</h2>
+    <div class="mt-6 overflow-x-auto rounded-lg border border-salvia">
+      <table class="w-full border-collapse bg-white text-left">
+        <thead>
+          <tr class="bg-verde-medio text-crema">
+            <th scope="col" class="px-5 py-3 text-xs font-bold tracking-[0.12em]">ALTURA</th>
+            <th scope="col" class="hidden px-5 py-3 text-xs font-bold tracking-[0.12em] sm:table-cell">PARA QUÉ ESPACIO</th>
+            <th scope="col" class="px-5 py-3 text-right text-xs font-bold tracking-[0.12em]">PRECIO</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            ALTURAS.map((a) => (
+              <tr class:list={["border-t border-salvia", a.destacado && "bg-crema"]}>
+                <td class="px-5 py-4">
+                  <span class="cifra">{a.rango}</span>
+                  {a.destacado && (
+                    <span class="ml-2 rounded bg-dorado px-2 py-0.5 text-[10px] font-bold tracking-wide text-verde">
+                      MÁS PEDIDA
+                    </span>
+                  )}
+                  <span class="mt-1 block text-xs text-tinta-suave sm:hidden">{a.uso}</span>
+                </td>
+                <td class="hidden px-5 py-4 text-sm text-tinta-suave sm:table-cell">{a.uso}</td>
+                <td class="px-5 py-4 text-right">
+                  {a.precio ?? <Pendiente campo="PRECIO" />}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-4 text-sm text-tinta-suave">
+      Todos los precios incluyen entrega en {COBERTURA}. Para pedidos de varios
+      árboles, <a href="/empresas" class="font-bold text-verde underline">cotizamos por volumen</a>.
+    </p>
+  </section>
+</Base>
+
+<script>
+  // Comparativa de escala. Vanilla, ~1.5 KB: no vale la pena un framework
+  // para esto y el objetivo es cargar en menos de 2 s en 4G.
+  const USOS = [
+    { max: 1.5, texto: "Departamentos, mesas y oficinas chicas." },
+    { max: 2.2, texto: "Sala de casa normal. Es la medida que más nos piden." },
+    { max: 3, texto: "Salas de doble altura y entradas." },
+    { max: 6, texto: "Lobbies, showrooms, oficinas y plazas." },
+  ];
+
+  const PX_M = 100;      // unidades de SVG por metro
+  const BASE_Y = 630;    // línea de piso
+  const PERSONA_M = 1.7;
+
+  const svg = document.getElementById("comparativa");
+  const piso = document.getElementById("piso");
+  const svgArbol = document.getElementById("arbol");
+  const svgPersona = document.getElementById("persona");
+  const reticula = document.getElementById("reticula");
+  const etqArbol = document.getElementById("etiqueta-arbol");
+  const etqPersona = document.getElementById("etiqueta-persona");
+  const detAltura = document.getElementById("detalle-altura");
+  const detUso = document.getElementById("detalle-uso");
+  const botones = [...document.querySelectorAll(".boton-altura")];
+
+  function dibujarArbol(cx, metros) {
+    const alto = metros * PX_M;
+    const an = alto * 0.46;
+    const troncoH = alto * 0.07;
+    const copaY = BASE_Y - alto;
+    const cuerpo = alto - troncoH;
+    const niveles = [[0, 0.42, 0.52], [0.3, 0.74, 0.78], [0.6, 1, 1]];
+    let d = "";
+    for (const [ini, fin, f] of niveles) {
+      const y0 = copaY + cuerpo * ini;
+      const y1 = copaY + cuerpo * fin;
+      const m = (an * f) / 2;
+      d += `M ${cx} ${y0} L ${cx - m} ${y1} L ${cx + m} ${y1} Z `;
+    }
+    return `<path d="${d}"/><rect x="${cx - an * 0.045}" y="${BASE_Y - troncoH}" width="${an * 0.09}" height="${troncoH}"/>`;
+  }
+
+  function dibujarPersona(cx) {
+    const alto = PERSONA_M * PX_M;
+    const r = alto * 0.062;
+    const cabezaY = BASE_Y - alto + r;
+    const torsoY = cabezaY + r * 1.5;
+    const torsoH = alto * 0.36;
+    const h = alto * 0.105;
+    const piernaH = BASE_Y - (torsoY + torsoH);
+    return `<circle cx="${cx}" cy="${cabezaY}" r="${r}"/>
+      <path d="M ${cx - h} ${torsoY + torsoH} L ${cx - h * 0.82} ${torsoY}
+        Q ${cx} ${torsoY - alto * 0.022} ${cx + h * 0.82} ${torsoY}
+        L ${cx + h} ${torsoY + torsoH} Z"/>
+      <rect x="${cx - h * 0.72}" y="${torsoY + torsoH}" width="${h * 0.58}" height="${piernaH}"/>
+      <rect x="${cx + h * 0.14}" y="${torsoY + torsoH}" width="${h * 0.58}" height="${piernaH}"/>`;
+  }
+
+  function render(metros) {
+    const anArbol = metros * PX_M * 0.46;
+    const anPersona = PERSONA_M * PX_M * 0.22;
+    const hueco = 46;
+    const contenido = anPersona + hueco + anArbol;
+
+    // El encuadre se ajusta a lo seleccionado. Si se dejara fijo en 6 m,
+    // elegir 1 m dejaba tres cuartas partes del marco en blanco.
+    // La escala NO cambia: persona y árbol siempre comparten el mismo px/m.
+    const anchoVista = Math.max(contenido + 110, 250);
+    const altoMax = Math.max(metros, PERSONA_M) * PX_M;
+    const margenSup = 46;
+    const espacioEtiquetas = 58;
+    const y0 = BASE_Y - altoMax - margenSup;
+    const altoVista = altoMax + margenSup + espacioEtiquetas;
+    svg.setAttribute("viewBox", `0 ${y0} ${anchoVista} ${altoVista}`);
+
+    const inicio = anchoVista / 2 - contenido / 2;
+    const cxPersona = inicio + anPersona / 2;
+    const cxArbol = inicio + anPersona + hueco + anArbol / 2;
+
+    svgPersona.innerHTML = dibujarPersona(cxPersona);
+    svgArbol.innerHTML = dibujarArbol(cxArbol, metros);
+    etqPersona.setAttribute("x", cxPersona);
+    etqArbol.setAttribute("x", cxArbol);
+    etqArbol.textContent = `${metros} m`;
+    piso.setAttribute("x1", 12);
+    piso.setAttribute("x2", anchoVista - 12);
+
+    let g = "";
+    for (let m = 1; m <= Math.ceil(Math.max(metros, PERSONA_M)); m++) {
+      const y = BASE_Y - m * PX_M;
+      g += `<line x1="12" y1="${y}" x2="${anchoVista - 12}" y2="${y}" stroke-dasharray="6 8"/>`;
+      g += `<text x="${anchoVista - 16}" y="${y - 6}" font-size="13" fill="#4A5B50"
+             text-anchor="end" opacity="0.7" stroke="none">${m} m</text>`;
+    }
+    reticula.innerHTML = g;
+
+    detAltura.textContent = `${metros} metros`;
+    detUso.textContent = (USOS.find((u) => metros <= u.max) ?? USOS.at(-1)).texto;
+
+    for (const b of botones) {
+      const activo = Number(b.dataset.metros) === metros;
+      b.classList.toggle("border-dorado", activo);
+      b.classList.toggle("bg-dorado", activo);
+      b.classList.toggle("text-verde", activo);
+      b.setAttribute("aria-pressed", String(activo));
+    }
+  }
+
+  botones.forEach((b) => b.addEventListener("click", () => render(Number(b.dataset.metros))));
+  render(2); // arranca en la medida más pedida
+</script>

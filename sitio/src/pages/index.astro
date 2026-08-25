@@ -1,0 +1,204 @@
+---
+import Base from "../layouts/Base.astro";
+import Pendiente from "../components/Pendiente.astro";
+import { ARGUMENTOS, HISTORIA, TOTAL_ENTREGADOS, NEGOCIO, COBERTURA } from "../datos";
+
+// Los 4 argumentos de producto van en la portada. El de verificación de
+// PROFEPA vive en /empresas, que es donde de verdad pesa (compras corporativas).
+const argumentosPortada = ARGUMENTOS.filter((a) => a.id !== "profepa_verificado");
+
+const pasos = [
+  { n: "1", t: "Apartas", d: "Por aquí o por WhatsApp. Nos dices altura y colonia." },
+  { n: "2", t: "Acordamos la fecha", d: "Tú eliges el día de entrega que te acomode." },
+  { n: "3", t: "Te lo llevamos", d: "Lo dejamos parado en su lugar, montado y sin embalaje." },
+];
+---
+
+<Base
+  titulo="Árboles de Navidad naturales en CDMX | Abeto noble de Oregon a domicilio"
+  descripcion="Árboles de Navidad naturales importados de Oregon, de 1 a 6 metros, con entrega a domicilio en CDMX y Estado de México. Abeto noble: retiene más del 90% de su aguja a los 28 días. Cuarta temporada."
+  ruta="/"
+>
+  <!-- ── Hero ─────────────────────────────────────────────────────── -->
+  <section class="relative isolate overflow-hidden bg-verde">
+    <picture>
+      <source media="(max-width: 640px)" srcset="/fotos/hero-movil.webp" width="720" height="900" />
+      <img
+        src="/fotos/hero.webp"
+        width="1200"
+        height="1500"
+        alt="Árbol de Navidad natural de abeto noble decorado en el lobby de doble altura de una casa"
+        fetchpriority="high"
+        decoding="async"
+        class="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+      />
+    </picture>
+    <div
+      class="absolute inset-0 -z-10 bg-gradient-to-b from-verde/90 via-verde/45 to-verde/97"
+    >
+    </div>
+
+    <div class="mx-auto max-w-6xl px-4 py-24 sm:py-32 lg:py-40">
+      <div class="max-w-2xl">
+        <p class="text-xs font-bold tracking-[0.35em] text-dorado sm:text-sm">
+          ABETO NOBLE DE OREGON
+        </p>
+        <h1 class="titulo mt-5 text-4xl font-bold text-crema sm:text-6xl">
+          El árbol que aguanta toda la temporada
+        </h1>
+        <p class="mt-5 max-w-xl text-base text-salvia sm:text-lg">
+          Naturales, de 1 a 6 metros, importados directo de Oregon.
+          Te lo llevamos hasta tu casa en {COBERTURA} y lo dejamos parado en su lugar.
+        </p>
+
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a
+            href="/apartar"
+            class="rounded-md bg-dorado px-6 py-3.5 font-bold text-verde transition-transform hover:scale-[1.03]"
+          >
+            Apartar mi árbol
+          </a>
+          <a
+            href="/arboles"
+            class="rounded-md border-2 border-salvia/50 px-6 py-3.5 font-bold text-crema transition-colors hover:border-dorado hover:text-dorado"
+          >
+            ¿De qué tamaño me cabe?
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Prueba social ────────────────────────────────────────────── -->
+  <section class="border-y border-salvia/50 bg-crema" aria-label="Nuestra trayectoria">
+    <div class="mx-auto max-w-6xl px-4 py-10">
+      <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-16">
+        {
+          HISTORIA.map((t, i) => (
+            <>
+              {i > 0 && <span class="hidden text-2xl text-salvia sm:block" aria-hidden="true">→</span>}
+              <div class="text-center">
+                <p class="cifra text-4xl text-dorado sm:text-5xl">{t.arboles}</p>
+                <p class="mt-1 text-xs tracking-widest text-tinta-suave">{t.anio.toUpperCase()}</p>
+              </div>
+            </>
+          ))
+        }
+        <div class="w-full text-center sm:w-auto sm:border-l sm:border-salvia sm:pl-12 sm:text-left">
+          <p class="titulo text-xl font-bold sm:text-2xl">Cuarta temporada</p>
+          <p class="mt-1 text-sm text-tinta-suave">
+            <span class="cifra">{TOTAL_ENTREGADOS}</span> árboles entregados en CDMX y Edomex
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Argumentos verificables ──────────────────────────────────── -->
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:py-24">
+    <h2 class="titulo text-3xl font-bold sm:text-4xl">¿Por qué abeto noble?</h2>
+    <p class="mt-3 max-w-2xl text-tinta-suave">
+      No todos los árboles naturales son iguales. Estas son las diferencias que
+      puedes comprobar, cada una con su fuente.
+    </p>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2">
+      {
+        argumentosPortada.map((a) => (
+          <article class="rounded-lg border border-salvia bg-white p-6">
+            <h3 class="titulo text-xl font-bold">{a.titulo}</h3>
+            <p class="mt-2 text-tinta-suave">{a.texto}</p>
+            <p class="mt-4 border-t border-salvia/60 pt-3 text-xs text-tinta-suave/80">
+              {a.fuente}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ── Cómo funciona ────────────────────────────────────────────── -->
+  <section class="bg-verde text-salvia">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:py-24">
+      <h2 class="titulo text-3xl font-bold text-crema sm:text-4xl">
+        Tú escoges. Nosotros hacemos todo lo demás.
+      </h2>
+      <div class="mt-10 grid gap-8 sm:grid-cols-3">
+        {
+          pasos.map((p) => (
+            <div>
+              <span class="cifra flex h-12 w-12 items-center justify-center rounded-full border-2 border-dorado text-xl text-dorado">
+                {p.n}
+              </span>
+              <h3 class="titulo mt-4 text-xl font-bold text-crema">{p.t}</h3>
+              <p class="mt-2 text-sm">{p.d}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-10 text-sm text-salvia/80">
+        Si prefieres verlos antes, puedes venir a escoger el tuyo en persona y
+        nosotros lo transportamos.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Preventa ─────────────────────────────────────────────────── -->
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:py-24">
+    <div class="rounded-xl border-2 border-dorado bg-white p-8 sm:p-12">
+      <h2 class="titulo text-3xl font-bold sm:text-4xl">Preventa abierta</h2>
+      <p class="mt-4 max-w-2xl text-lg text-tinta-suave">
+        Apartando antes del{" "}
+        {NEGOCIO.fechaLimitePreventa ?? <Pendiente campo="FECHA" />} te llevas{" "}
+        {NEGOCIO.descuentoPreventa ? (
+          <span class="cifra text-dorado">{NEGOCIO.descuentoPreventa}%</span>
+        ) : (
+          <Pendiente campo="XX" />
+        )}{" "}
+        de descuento sobre el precio de temporada.
+      </p>
+      <p class="mt-4 max-w-2xl text-tinta-suave">
+        Importamos por pedido y cada año se acaban primero los tamaños grandes.
+        El que aparta, escoge.
+      </p>
+      <a
+        href="/apartar"
+        class="mt-8 inline-block rounded-md bg-dorado px-7 py-3.5 font-bold text-verde transition-transform hover:scale-[1.03]"
+      >
+        Apartar mi árbol
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Empresas ─────────────────────────────────────────────────── -->
+  <section class="border-t border-salvia/50">
+    <div class="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:py-20 md:grid-cols-2 md:items-center">
+      <div>
+        <p class="text-xs font-bold tracking-[0.3em] text-dorado">PARA EMPRESAS</p>
+        <h2 class="titulo mt-3 text-3xl font-bold sm:text-4xl">
+          Lobbies, showrooms y oficinas
+        </h2>
+        <p class="mt-4 text-tinta-suave">
+          Surtimos árboles de 4 a 6 metros para empresas, con entrega,
+          instalación y retiro al final de la temporada. Entregamos la
+          documentación de importación que pide su área de compras.
+        </p>
+        <a
+          href="/empresas"
+          class="mt-7 inline-block rounded-md border-2 border-verde px-6 py-3 font-bold text-verde transition-colors hover:bg-verde hover:text-crema"
+        >
+          Ver propuesta para empresas
+        </a>
+      </div>
+      <img
+        src="/fotos/lote.webp"
+        width="1200"
+        height="500"
+        loading="lazy"
+        decoding="async"
+        alt="Varios árboles de Navidad naturales de distintos tamaños listos para entrega"
+        class="rounded-lg border border-salvia"
+      />
+    </div>
+  </section>
+</Base>

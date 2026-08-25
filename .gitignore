@@ -5,3 +5,6 @@ _*.svg
 node_modules/
 dist/
 .env
+sitio/node_modules/
+sitio/dist/
+sitio/.astro/

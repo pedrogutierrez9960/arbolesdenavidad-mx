@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+/* ── Fuentes self-hosted ──────────────────────────────────────────────
+   Subconjunto latino (104 KB las cuatro). Se sirven desde el mismo
+   dominio: cero peticiones a terceros, que es lo que mata el tiempo de
+   carga en 4G. font-display:swap para que el texto se vea de inmediato. */
+@font-face {
+  font-family: "EB Garamond";
+  src: url("/fuentes/garamond-400.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "EB Garamond";
+  src: url("/fuentes/garamond-700.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/fuentes/lato-400.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/fuentes/lato-700.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ── Paleta de marca ──────────────────────────────────────────────────
+   Definida en contenido/instagram-perfil.md. No agregar colores nuevos. */
+@theme {
+  --color-verde: #0E2A1C;
+  --color-verde-medio: #1B4630;
+  --color-salvia: #BACDB4;
+  --color-dorado: #C9A227;
+  --color-crema: #F2EFE6;
+  --color-tinta: #14251C;
+  --color-tinta-suave: #4A5B50;
+
+  --font-display: "EB Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Lato", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-tinta);
+  background: var(--color-crema);
+}
+
+/* Las cifras sueltas van en Lato: EB Garamond usa figuras oldstyle y
+   "20 100 150" se lee como "2o ıoo ı5o". Mismo criterio que los renders. */
+.cifra {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.titulo {
+  font-family: var(--font-display);
+  line-height: 1.12;
+}
+
+/* Placeholder visible de dato pendiente (regla dura #1). Que se note. */
+.pendiente {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: #9A6B00;
+  background: #FFF3D1;
+  border-bottom: 2px dotted #C9A227;
+  padding: 0 .28em;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

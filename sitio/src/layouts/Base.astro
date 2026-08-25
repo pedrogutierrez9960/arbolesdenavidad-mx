@@ -1,0 +1,99 @@
+---
+import "../styles/global.css";
+import Encabezado from "../components/Encabezado.astro";
+import Pie from "../components/Pie.astro";
+import { SITIO, NEGOCIO, COBERTURA } from "../datos";
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+  /** Ruta canónica, ej: "/arboles" */
+  ruta?: string;
+}
+
+const { titulo, descripcion, ruta = "" } = Astro.props;
+const canonica = new URL(ruta, SITIO.url).href;
+const og = new URL("/og.jpg", SITIO.url).href;
+
+// schema.org LocalBusiness. Es lo que ayuda a que Google entienda que somos
+// un negocio local de CDMX y no una tienda nacional cualquiera.
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: SITIO.nombre,
+  description:
+    "Venta de árboles de Navidad naturales importados de Oregon, con entrega a domicilio en Ciudad de México y Estado de México. Abeto noble de 1 a 6 metros.",
+  url: SITIO.url,
+  image: og,
+  priceRange: "$$$",
+  areaServed: [
+    { "@type": "City", name: "Ciudad de México" },
+    { "@type": "State", name: "Estado de México" },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Ciudad de México",
+    addressCountry: "MX",
+    ...(NEGOCIO.direccion ? { streetAddress: NEGOCIO.direccion } : {}),
+  },
+  sameAs: [SITIO.instagramUrl],
+  ...(NEGOCIO.whatsapp ? { telephone: `+${NEGOCIO.whatsapp}` } : {}),
+  ...(NEGOCIO.correo ? { email: NEGOCIO.correo } : {}),
+  makesOffer: {
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Product",
+      name: "Árbol de Navidad natural — abeto noble de Oregon",
+      description: "Árbol de Navidad natural importado de Oregon, de 1 a 6 metros de altura.",
+    },
+  },
+};
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonica} />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="theme-color" content="#0E2A1C" />
+
+    <!-- La fuente del hero se precarga: es la que se ve primero -->
+    <link rel="preload" href="/fuentes/garamond-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fuentes/lato-400.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Open Graph: así se ve el link al compartirse por WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content={SITIO.nombre} />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:image" content={og} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Árbol de Navidad natural de abeto noble en el lobby de una casa" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="geo.region" content="MX-CMX" />
+    <meta name="geo.placename" content="Ciudad de México" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body class="antialiased">
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-3 focus:rounded focus:bg-verde focus:px-4 focus:py-2 focus:text-crema"
+      >Saltar al contenido</a
+    >
+    <Encabezado />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Pie />
+  </body>
+</html>

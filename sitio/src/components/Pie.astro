@@ -1,0 +1,67 @@
+---
+import { NEGOCIO, SITIO, COBERTURA } from "../datos";
+import Pendiente from "./Pendiente.astro";
+const anio = new Date().getFullYear();
+---
+
+<footer class="bg-verde text-salvia">
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="sm:col-span-2 lg:col-span-1">
+        <img src="/marca/isotipo-transparente.svg" alt="" width="44" height="44" class="h-11 w-11" />
+        <p class="titulo mt-3 text-lg font-bold text-crema">Árboles de Navidad Naturales</p>
+        <p class="mt-1 text-sm">Abeto noble de Oregon</p>
+        <p class="mt-1 text-sm">Cuarta temporada</p>
+      </div>
+
+      <div>
+        <h2 class="text-xs font-bold tracking-[0.15em] text-dorado">SITIO</h2>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="/arboles" class="hover:text-crema">Nuestros árboles</a></li>
+          <li><a href="/apartar" class="hover:text-crema">Apartar mi árbol</a></li>
+          <li><a href="/empresas" class="hover:text-crema">Para empresas</a></li>
+          <li><a href="/preguntas" class="hover:text-crema">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xs font-bold tracking-[0.15em] text-dorado">CONTACTO</h2>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li>
+            WhatsApp{" "}
+            {NEGOCIO.whatsapp
+              ? <a href={`https://wa.me/${NEGOCIO.whatsapp}`} class="hover:text-crema">{NEGOCIO.whatsapp}</a>
+              : <Pendiente campo="WHATSAPP" />}
+          </li>
+          <li>
+            {NEGOCIO.correo
+              ? <a href={`mailto:${NEGOCIO.correo}`} class="hover:text-crema">{NEGOCIO.correo}</a>
+              : <Pendiente campo="CORREO" />}
+          </li>
+          <li>
+            <a href={SITIO.instagramUrl} rel="me noopener" class="hover:text-crema">
+              @{SITIO.instagram}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xs font-bold tracking-[0.15em] text-dorado">ENTREGAS</h2>
+        <p class="mt-3 text-sm">{COBERTURA}</p>
+        <p class="mt-2 text-xs text-salvia/70">
+          No hacemos entregas fuera de esta zona.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-10 border-t border-verde-medio pt-6 text-xs text-salvia/70">
+      <p>© {anio} Árboles de Navidad Naturales · Ciudad de México</p>
+      <p class="mt-1.5">
+        El abeto noble (<i>Abies procera</i>) es originario de Oregon y Washington,
+        Estados Unidos. Importación al amparo de la NOM-013-SEMARNAT-2020,
+        verificada por PROFEPA.
+      </p>
+    </div>
+  </div>
+</footer>

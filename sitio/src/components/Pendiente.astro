@@ -1,0 +1,14 @@
+---
+/**
+ * Placeholder VISIBLE de un dato que aún no se define (regla dura #1).
+ * Sale resaltado en amarillo a propósito: si alguien lo ve en producción,
+ * tiene que saltarle a la vista, no pasar desapercibido.
+ * Cada campo está registrado en PENDIENTES.md.
+ */
+interface Props {
+  campo: string;
+}
+const { campo } = Astro.props;
+---
+
+<span class="pendiente" title={`Dato pendiente: ${campo}. Ver PENDIENTES.md`}>[{campo}]</span>
