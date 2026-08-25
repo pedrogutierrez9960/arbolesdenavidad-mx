@@ -36,8 +36,10 @@ del mismo tamaño.
 
 | # | Pregunta | Contexto |
 |---|---|---|
-| 11 | **¿Cuáles 4 argumentos verificables van al hero del sitio?** | El brief pide 4, pero la tabla de `CONTEXTO-NEGOCIO.md` tiene 5 renglones. Falta decidir cuál se queda fuera (o si van los 5). |
+| 11 | **¿Cuáles 4 argumentos verificables van al hero del sitio?** | El brief pide 4, pero la tabla de `CONTEXTO-NEGOCIO.md` tiene 5 renglones. Falta decidir cuál se queda fuera (o si van los 5). En el one-pager entraron 4 y quedó fuera "Importación verificada por PROFEPA" porque ese argumento ya tiene su propia sección de trazabilidad. |
 | 12 | Confirmar si **"Citimarket"** es City Market (Grupo La Comer) | `INVESTIGACION-MERCADO.md` §5 lo marca como no verificado. Confirmar antes de invertir tiempo en ese canal. |
+| 13 | 🚩 **¿De verdad ofrecen instalación y retiro?** | El brief pide que el one-pager diga "entrega-instalación-retiro", pero `CONTEXTO-NEGOCIO.md` solo documenta entrega a domicilio. Lo incluí como lo pediste **y ya está impreso en el PDF**. Si no dan retiro en enero, hay que quitarlo antes de mandárselo a un cliente: es una promesa de servicio, no un argumento de marketing. |
+| 14 | **Correo de contacto del negocio** | Va en el one-pager y en el perfil. Hoy es `[CORREO]`. |
 
 ## 📸 Producción de fotografía (prioritario, no opcional)
 
