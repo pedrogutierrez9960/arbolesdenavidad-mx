@@ -64,6 +64,11 @@ Alcanza para arrancar. No alcanza para la temporada.
 
 | Dato | Resolución |
 |---|---|
+| **Nombre comercial** | **Bosque Noble** (confirmado 25-ago-2026) |
+| **WhatsApp de ventas** | **+52 55 3274 2256** (confirmado 25-ago-2026) |
+| **Correo del negocio** | pedrogutierrez9960@gmail.com |
+| **Volumen de la temporada** | Mínimo 1 tráiler, ~1,000 árboles |
+| **Proveedores en Oregon** | Noble Mountain Tree Farm (Salem) y Holiday Tree Farms (Corvallis) |
 | Prueba social | 20 → 100 → 150 árboles, confirmado contra `CONTEXTO-NEGOCIO.md` |
 | Zona de entrega | CDMX y Estado de México, nunca fuera |
 | "Hoja canadiense" | Revisado todo el repo: no se usa en ninguna pieza. El abeto noble es de Oregon/Washington |

@@ -80,6 +80,53 @@ gringo.
 |---|---|---|---|
 | 13 | **Heavy Haulers** | 📞 (800) 908-6206 | 15+ años moviendo árboles de Navidad, incluyendo Canadá y México ([fuente](https://www.heavyhaulers.com/miscellaneous/christmas-tree-shipping.php)) |
 
+## ✅ Correos enviados — 25 de agosto de 2026
+
+Enviados desde pedrogutierrez9960@gmail.com, firmados como **Bosque Noble**,
+Pedro Gutiérrez, +52 55 3274 2256.
+
+| Empresa | Correo | Idioma | Estado |
+|---|---|---|---|
+| Left Coast Logistics | info@leftcoastlogisticsllc.com | Inglés | ✅ Enviado |
+| OXBO Logistics | operations@oxbologistics.com (cc christy@) | Inglés | ✅ Enviado |
+| Evergreen Shippers | info@evergreenshippers.com | Inglés | ✅ Enviado |
+| Mexicom Logistics | info@mexicomlogistics.com | Español | ✅ Enviado |
+| Palosgarza / Igloo Services | contacto@palosgarza.com (cc igloo@) | Español | ✅ Enviado |
+
+Los cinco correos piden lo mismo para que las cotizaciones sean comparables:
+volumen de ~1,000 árboles de 1.8 a 3 m, **precio desde las dos granjas por
+separado** (Noble Mountain en Salem y Holiday Tree Farms en Corvallis) para
+decidir dónde cargar, estructura partida, caja seca contra refrigerado,
+desglose de cruce, backhaul y seguro.
+
+### ⚠️ Pregunta crítica que va en los 5 correos
+**1,000 abetos nobles de 1.8 a 3 m probablemente NO caben en un solo tráiler
+de 53 pies.** La referencia de 800–1,200 árboles por caja es para árbol chico y
+mezclado; el noble de 2 m para arriba ocupa mucho más. Por eso a los cinco les
+pedí que digan explícitamente si cabe en una caja o si son dos. **Si son dos
+tráileres, tu costo de flete por árbol no baja tanto como esperas y hay que
+rehacer el número.** Es mejor saberlo ahora que en noviembre.
+
+## 📞 Las que solo tienen teléfono o formulario (te tocan a ti)
+
+No publican correo, así que no se les puede escribir. Ordenadas por a cuál
+llamaría primero:
+
+| Prioridad | Empresa | Cómo | Por qué vale la llamada |
+|---|---|---|---|
+| 1 | **Heavy Haulers** | 📞 (800) 908-6206 | 15+ años moviendo árboles de Navidad, con cobertura a México |
+| 2 | **Egoba (Grupo Traxión)** | 📞 867 711 0350 (terminal Nuevo Laredo) | Mexicana grande, refrigerado, cruza por Nuevo Laredo y Reynosa |
+| 3 | **Tralfer Logistics** | 📞 956-701-3413 (Laredo) | Consorcio binacional, puerta a puerta y cruces por Laredo y Colombia |
+| 4 | **Tratasa Mex** | 📞 (55) 3620-0872 CDMX · (867) 712-1604 Nuevo Laredo | Tiene oficina en CDMX y en la frontera |
+| 5 | **Schneider** | [Formulario](https://schneider.com/freight-shipping-solutions/cross-border-freight) | 30+ años en México, remolques propios de los dos lados, FAST Lane en Laredo |
+| 6 | **RXO** | [Formulario](https://rxo.com/shippers/cross-border/mexico-regional/) | Instalación CTPAT propia en Laredo, personal bilingüe 24/7 |
+| 7 | **Echo Global Logistics** | [Formulario](https://www.echo.com/shippers/freight-brokerage-services/mexico-cross-border/) | Oficina en CDMX |
+| 8 | **TQL** | [Formulario](https://www.tql.com/mexico-crossborder) | División dedicada de cruce |
+
+Para las llamadas usa el mismo guion del correo: mismo volumen, mismas dos
+granjas, mismas preguntas. Si preguntas distinto a cada quien, no vas a poder
+comparar.
+
 ## Las 3 palancas que de verdad bajan el precio
 
 Esto es lo que va en el correo y es donde se gana o se pierde el dinero:
